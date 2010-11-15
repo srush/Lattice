@@ -22,9 +22,37 @@ message Lattice {
   extensions 100 to 199;
 }
 
+message Subword {
+   optional string word =1; 
+   optional int32 subword_original_id =2;
+}
+
+message Phraselet { 
+    repeated Subword word = 1;
+    optional int32 phraselet_hypergraph_edge = 2;
+}
+
+message Phraselets {
+ repeated Phraselet phraselet =1;
+} 
+
 extend Lattice.Node {
-  optional bool is_word = 110;
-  optional string word = 111; 
-  optional int32 original_node = 112; 
-  optional bool ignore_node = 113; 
+  optional Phraselets phraselets = 100;
+  optional bool has_phrases = 101;
+}
+
+
+message Origin { 
+  repeated int32 hypergraph_edge = 1;
+  optional int32 original_id = 2; 
+  optional bool has_origin = 3;
+}
+
+extend Lattice.Edge {
+   optional Origin origin = 110;
+}
+
+extend Lattice {
+   optional int32 num_hypergraph_edges = 121;
+   optional int32 num_original_ids = 122;
 }
