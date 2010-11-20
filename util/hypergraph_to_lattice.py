@@ -306,16 +306,17 @@ class NodeExtractor(object):
 
 
 if __name__ == "__main__":
-  hgraph = Hypergraph()  
-  f = open(sys.argv[1], "rb")
-  hgraph.ParseFromString(f.read())
-  f.close()
+  for i in range(1,11):
+    hgraph = Hypergraph()  
+    f = open(sys.argv[1] +str(i), "rb")
+    hgraph.ParseFromString(f.read())
+    f.close()
 
-  graph = NodeExtractor().extract(hgraph)
+    graph = NodeExtractor().extract(hgraph)
 
-  f = open(sys.argv[2], "wb")
-  f.write(graph.lattice.SerializeToString())
-  f.close()
+    f = open(sys.argv[2]+str(i), "wb")
+    f.write(graph.lattice.SerializeToString())
+    f.close()
 
 
 

@@ -59,13 +59,14 @@ def reverse_lat(lat):
   return ret
 
 if __name__ == "__main__":
-  lat = Lattice()  
-  f = open(sys.argv[1], "rb")
-  lat.ParseFromString(f.read())
-  f.close()
+  for i in range(1,11):
+    lat = Lattice()  
+    f = open(sys.argv[1]+str(i), "rb")
+    lat.ParseFromString(f.read())
+    f.close()
 
-  rlat = reverse_lat(lat)
+    rlat = reverse_lat(lat)
 
-  f = open(sys.argv[2], "wb")
-  f.write(rlat.SerializeToString())
-  f.close()
+    f = open(sys.argv[2] + str(i), "wb")
+    f.write(rlat.SerializeToString())
+    f.close()
