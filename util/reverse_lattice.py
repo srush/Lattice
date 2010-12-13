@@ -33,6 +33,7 @@ def reverse_lat(lat):
       for sword in old: 
         new_word = plet.word.add()
         new_word.subword_original_id = sword.subword_original_id
+        new_word.subword_hypergraph_node_id = sword.subword_hypergraph_node_id
         new_word.word = sword.word
     #node.Extensions[is_word] = by_id[n_id].Extensions[is_word]
     #node.Extensions[word] = by_id[n_id].Extensions[word]
@@ -59,7 +60,7 @@ def reverse_lat(lat):
   return ret
 
 if __name__ == "__main__":
-  for i in range(1,11):
+  for i in range(1,101):
     lat = Lattice()  
     f = open(sys.argv[1]+str(i), "rb")
     lat.ParseFromString(f.read())

@@ -25,6 +25,7 @@ message Lattice {
 message Subword {
    optional string word =1; 
    optional int32 subword_original_id =2;
+   optional int32 subword_hypergraph_node_id =3;
 }
 
 message Phraselet { 
